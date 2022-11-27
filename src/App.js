@@ -1,47 +1,32 @@
 import logo from './logo.svg';
 import './App.css';
 import { Component } from 'react';
+import {render} from 'react-dom'
 
 class App extends Component{
   constructor(){
     super();
 
     this.state = {
-      name: 'Jimmy',
-      company: 'ZTM'
-    };
-  }
+      monsters: [{
+        name: 'Frank'
+      },{
+        name: 'Linda'
+      },{
+        name: 'Jackie'
+      }]
+    }
+  }  
   render(){
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Hi my name is {this.state.name} I work at {this.state.company}
-          </p>
-          <button onClick={() => {
-             this.setState((state, props) => {
-              return {
-                name: 'diff'
-              }
-             }, () => {
-              console.log(this.state)
-             })
-            }
-          }>
-            Change Name
-          </button>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+    return(
+      <div className='App'>
+        {this.state.monsters.map((monster, key) => {
+          return (
+          <h1 key={key}>{monster.name}</h1>
+          )
+        })}
       </div>
-    );
+    )
   }
 }
 export default App;
