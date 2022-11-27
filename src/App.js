@@ -1,22 +1,29 @@
 import logo from './logo.svg';
 import './App.css';
-import { Component } from 'react';
+import { Component, useEffect } from 'react';
 import {render} from 'react-dom'
 
 class App extends Component{
   constructor(){
     super();
-
+    
     this.state = {
-      monsters: [{
-        name: 'Frank'
-      },{
-        name: 'Linda'
-      },{
-        name: 'Jackie'
-      }]
-    }
-  }  
+      monsters: [],
+    };
+  } 
+  
+  componentDidMount(){
+    const url = 'https://jsonplaceholder.typicode.com/users'
+    fetch(url)
+    .then(response => response.json())
+    .then(users => this.setState(() => {
+      return {monsters:users}
+    }, () => {
+      console.log((this.state))
+    }))
+  }
+
+
   render(){
     return(
       <div className='App'>
